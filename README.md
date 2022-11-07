@@ -11,3 +11,5 @@ This program pulls passwords from LightShot public screenshots.
 * `npm start` (or `npm start only-s` to only log successful attempts)
 * ???
 * Profit
+
+of course not so accurate but it does its best
