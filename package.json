@@ -1,0 +1,21 @@
+{
+  "name": "lightshot-password-puller",
+  "version": "1.0.0",
+  "description": "A program that pulls passwords from public Lightshot screenshots",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "password",
+    "lightshot"
+  ],
+  "author": "Milk_Cool",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^20.0.2",
+    "node-fetch": "^2.6.7",
+    "node-tesseract-ocr": "^2.2.1",
+    "nodejs-file-downloader": "^4.10.2"
+  }
+}
