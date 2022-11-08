@@ -14,6 +14,8 @@ const removed = "https://st.prntscr.com/2022/09/11/1722/img/0_173a7b_211be8ff.pn
 
 const genURL = () => "https://prnt.sc/1" + Math.random().toString(36).slice(2, 7);
 
+if(process.argv.includes("h")) console.clear();
+
 (async () => {
 	while(true){
 		const url = genURL();
@@ -35,9 +37,26 @@ const genURL = () => "https://prnt.sc/1" + Math.random().toString(36).slice(2, 7
 			filePath = (await dl.download()).filePath;
 		}catch(_){
 			if(!process.argv.includes("only-s")) console.log(url, "E: Can't download!");
+			continue;
 		}
-		const rusText = await tesseract.recognize(filePath, { "lang": "rus" });
-		const engText = await tesseract.recognize(filePath, { "lang": "eng" });
+		if(filePath === undefined){
+			if(!process.argv.includes("only-s")) console.log(url, "U: Error 2!");
+			continue;
+		}
+		let rusText, engText;
+		try{
+			rusText = await tesseract.recognize(filePath, { "lang": "rus" });
+			engText = await tesseract.recognize(filePath, { "lang": "eng" });
+		}catch(_){
+			if(!process.argv.includes("only-s")) console.log(url, "E: Can't read text!");
+			// fs.unlinkSync(filePath);
+			continue;
+		}
+		if(rusText === undefined || engText === undefined){
+			if(!process.argv.includes("only-s")) console.log(url, "U: Error 1!");
+			fs.unlinkSync(filePath);
+			continue;
+		}
 		let flag = false;
 		for(let i of rusKeywords)
 			if(rusText.includes(i)){
