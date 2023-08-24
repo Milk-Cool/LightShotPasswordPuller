@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "jsdom": "^20.0.2",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^2.6.12",
     "node-tesseract-ocr": "^2.2.1",
     "nodejs-file-downloader": "^4.10.2"
   }
